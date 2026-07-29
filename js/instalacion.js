@@ -7,7 +7,7 @@ const INSTALACION = {
     flujotv: {
         nombre: "Flujo TV",
         icono: "fa-solid fa-tv",
-        descripcion: "Aplicación IPTV con canales en vivo, películas y series.",
+        descripcion: "Aplicación IPTV con canales en vivo, películas y series. Compatible con múltiples dispositivos.",
         dispositivos: {
             "📱 Celular Android": [
                 { texto: "Descarga la aplicación desde:", enlace: "https://bitcc.net/flujo-mobile-v861" },
@@ -42,7 +42,7 @@ const INSTALACION = {
     telelatino: {
         nombre: "Tele Latino",
         icono: "fa-solid fa-play-circle",
-        descripcion: "Aplicación IPTV con canales latinos, películas y series.",
+        descripcion: "Aplicación IPTV con canales latinos, películas y series. Dos versiones disponibles.",
         dispositivos: {
             "📱 Versión 5.39.1 (Revendedores)": [
                 { texto: "Descargar desde:", enlace: "https://bit.ly/telelatino2026" },
@@ -74,7 +74,7 @@ const INSTALACION = {
     stellatv: {
         nombre: "Stella TV",
         icono: "fa-solid fa-star",
-        descripcion: "Aplicación IPTV con contenido en vivo y bajo demanda.",
+        descripcion: "Aplicación IPTV con contenido en vivo y bajo demanda. Excelente relación calidad-precio.",
         dispositivos: {
             "📱 Celulares Android": [
                 { texto: "Descarga desde:", enlace: "https://bit.ly/43hQCxU" },
@@ -97,7 +97,7 @@ const INSTALACION = {
     iptvsmarters: {
         nombre: "IPTV Smarters Pro",
         icono: "fa-solid fa-play",
-        descripcion: "Reproductor IPTV profesional para todos los dispositivos.",
+        descripcion: "Reproductor IPTV profesional para todos los dispositivos. Interfaz moderna y fácil de usar.",
         dispositivos: {
             "📱 Celular Android": [
                 { texto: "Descargar IPTV Smarters Pro desde Play Store" },
@@ -132,7 +132,7 @@ function renderInstalacion() {
     
     const keys = Object.keys(INSTALACION);
     if (keys.length === 0) {
-        grid.innerHTML = `<p style="text-align:center;color:var(--gray-dark);grid-column:1/-1;padding:40px 0;">Próximamente más guías de instalación</p>`;
+        grid.innerHTML = `<p style="text-align:center;color:var(--gray-dark);grid-column:1/-1;padding:40px 0;">📌 Próximamente más guías de instalación</p>`;
         return;
     }
     
@@ -153,7 +153,7 @@ function renderInstalacion() {
                                 ${item.dispositivos[tipo].map(d => `
                                     <li>
                                         ${d.texto || ''}
-                                        ${d.enlace ? ` <a href="${d.enlace}" target="_blank" class="link-download">${d.enlace}</a>` : ''}
+                                        ${d.enlace ? ` <a href="${d.enlace}" target="_blank" class="link-download">🔗 Enlace</a>` : ''}
                                         ${d.codigo ? ` <span class="codigo-downloader">📥 Código: ${d.codigo}</span>` : ''}
                                     </li>
                                 `).join('')}
@@ -166,3 +166,6 @@ function renderInstalacion() {
         `;
     }).join('');
 }
+
+// Ejecutar al cargar la página
+document.addEventListener('DOMContentLoaded', renderInstalacion);

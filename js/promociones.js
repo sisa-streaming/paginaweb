@@ -35,7 +35,6 @@ const PROMOCIONES = [
         fecha: "Válido todo el mes",
         activa: true,
         icono: "fa-solid fa-gamepad"
-        
     }
 ];
 
@@ -71,3 +70,6 @@ function renderPromociones() {
         </div>
     `).join('');
 }
+
+// Ejecutar al cargar la página
+document.addEventListener('DOMContentLoaded', renderPromociones);
