@@ -1,5 +1,5 @@
 // ============================================
-// SISA STREAMING - FUNCIONALIDADES PRINCIPALES
+// SISA STREAMING - FUNCIONALIDADES PRINCIPALES  script.js
 // ============================================
 
 // ===== CONTADOR DE VISITAS =====
@@ -247,14 +247,20 @@ function renderGames(busqueda = '') {
     `).join('');
 }
 
-// ===== RENDER INSTALACIÓN =====
+// ===== RENDER INSTALACIÓN (VERSIÓN MEJORADA) =====
 function renderInstalacion() {
     const grid = document.getElementById('instalacionGrid');
-    if (!grid || !INSTALACION) return;
+    if (!grid) return;
+    
+    // Verificar si existe INSTALACION
+    if (typeof INSTALACION === 'undefined') {
+        grid.innerHTML = `<p style="text-align:center;color:var(--gray-dark);grid-column:1/-1;padding:40px 0;">⚠️ No se encontraron guías de instalación.</p>`;
+        return;
+    }
     
     const keys = Object.keys(INSTALACION);
     if (keys.length === 0) {
-        grid.innerHTML = `<p style="text-align:center;color:var(--gray-dark);grid-column:1/-1;padding:40px 0;">Próximamente más guías de instalación</p>`;
+        grid.innerHTML = `<p style="text-align:center;color:var(--gray-dark);grid-column:1/-1;padding:40px 0;">📌 Próximamente más guías de instalación</p>`;
         return;
     }
     
@@ -262,17 +268,28 @@ function renderInstalacion() {
         const item = INSTALACION[key];
         return `
             <div class="instalacion-card">
-                <h4>${item.nombre}</h4>
-                ${Object.keys(item.dispositivos).map(tipo => `
-                    <div class="dispositivo">
-                        <strong>${tipo}</strong>
-                        ${item.dispositivos[tipo].map(d => `
-                            ${d.enlace ? `<a href="${d.enlace}" target="_blank">${d.texto}</a>` : `<span style="color:var(--gray-dark);">${d.texto}</span>`}
-                            ${d.codigo ? `<span class="codigo">Código: ${d.codigo}</span>` : ''}
-                        `).join('')}
-                    </div>
-                `).join('')}
-                ${item.nota ? `<div class="nota">📌 ${item.nota}</div>` : ''}
+                <div class="instalacion-header">
+                    <i class="${item.icono || 'fa-solid fa-download'}"></i>
+                    <h3>${item.nombre}</h3>
+                </div>
+                <p class="instalacion-desc">${item.descripcion || ''}</p>
+                <div class="instalacion-body">
+                    ${Object.keys(item.dispositivos).map(tipo => `
+                        <div class="instalacion-categoria">
+                            <h4>${tipo}</h4>
+                            <ol>
+                                ${item.dispositivos[tipo].map(d => `
+                                    <li>
+                                        ${d.texto || ''}
+                                        ${d.enlace ? ` <a href="${d.enlace}" target="_blank" class="link-download" style="color:var(--gold);word-break:break-all;">🔗 Enlace</a>` : ''}
+                                        ${d.codigo ? ` <span class="codigo-downloader" style="display:inline-block;background:var(--gold);color:var(--black);padding:2px 10px;border-radius:4px;font-weight:bold;font-size:12px;">📥 Código: ${d.codigo}</span>` : ''}
+                                    </li>
+                                `).join('')}
+                            </ol>
+                        </div>
+                    `).join('')}
+                </div>
+                ${item.nota ? `<div class="instalacion-nota" style="margin-top:15px;padding:10px;background:rgba(212,175,55,0.08);border-radius:8px;border-left:3px solid var(--gold);font-size:13px;color:var(--gray-dark);">📌 ${item.nota}</div>` : ''}
             </div>
         `;
     }).join('');

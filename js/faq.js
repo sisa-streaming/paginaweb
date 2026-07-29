@@ -1,5 +1,5 @@
 // ============================================
-// PREGUNTAS FRECUENTES - SISA STREAMING
+// PREGUNTAS FRECUENTES - SISA STREAMING --- faq.js
 // ============================================
 
 const FAQ = [

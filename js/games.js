@@ -1,5 +1,5 @@
 // ============================================
-// VIDEOJUEGOS Y RECARGAS DE SISA STREAMING
+// VIDEOJUEGOS Y RECARGAS DE SISA STREAMING --- games.js
 // ============================================
 
 const GAMES = {

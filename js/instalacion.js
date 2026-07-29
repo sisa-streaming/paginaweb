@@ -1,187 +1,168 @@
-// ===== INSTALACION.JS =====
-// Guías de instalación para Flujo TV, Stella TV, Tele Latino e IPTV Smarters Pro
+// ============================================
+// INSTALACION.JS - Guías de instalación
+// SISA STREAMING
+// ============================================
 
-const INSTALACIONES = [
-    {
-        id: 'flujo-tv',
-        nombre: 'Flujo TV',
-        icono: 'fa-solid fa-tv',
-        descripcion: 'Aplicación IPTV con canales en vivo, películas y series.',
-        categorias: [
-            {
-                titulo: '📱 Instalación en Celular Android',
-                pasos: [
-                    'Descarga la aplicación desde: <a href="https://bitcc.net/flujo-mobile-v861" target="_blank">https://bitcc.net/flujo-mobile-v861</a> o <a href="http://aftv.news/8613873" target="_blank">http://aftv.news/8613873</a>',
-                    'Abre la carpeta Descargas',
-                    'Pulsa sobre el archivo APK descargado',
-                    'Si aparece "No se permite instalar aplicaciones desconocidas", ve a Configuración → Seguridad/Privacidad → Instalar aplicaciones desconocidas → Permitir',
-                    'Regresa al APK y pulsa Instalar',
-                    'Espera unos segundos y pulsa Abrir',
-                    'Inicia sesión con el usuario y contraseña proporcionados'
-                ]
-            },
-            {
-                titulo: '📺 Instalación en Android TV, TV Box y Fire Stick',
-                pasos: [
-                    'Instala la aplicación Downloader',
-                    'Abre Downloader',
-                    'Escribe cualquiera de estas opciones:',
-                    '• Código: <strong>5822304</strong>',
-                    '• URL: <a href="http://aftv.news/5822304" target="_blank">http://aftv.news/5822304</a>',
-                    '• URL: <a href="https://bitcc.net/flujo-tv-v861" target="_blank">https://bitcc.net/flujo-tv-v861</a>',
-                    'Descarga el APK y selecciona Instalar',
-                    'Pulsa Abrir e ingresa tus credenciales'
-                ]
-            }
-        ]
+const INSTALACION = {
+    flujotv: {
+        nombre: "Flujo TV",
+        icono: "fa-solid fa-tv",
+        descripcion: "Aplicación IPTV con canales en vivo, películas y series.",
+        dispositivos: {
+            "📱 Celular Android": [
+                { texto: "Descarga la aplicación desde:", enlace: "https://bitcc.net/flujo-mobile-v861" },
+                { texto: "o desde:", enlace: "http://aftv.news/8613873" },
+                { texto: "Abre la carpeta Descargas" },
+                { texto: "Pulsa sobre el archivo APK descargado" },
+                { texto: "Si aparece 'No se permite instalar aplicaciones desconocidas'" },
+                { texto: "Ve a Configuración → Seguridad/Privacidad → Instalar aplicaciones desconocidas → Permitir" },
+                { texto: "Regresa al APK y pulsa Instalar" },
+                { texto: "Espera unos segundos y pulsa Abrir" },
+                { texto: "Inicia sesión con el usuario y contraseña proporcionados" }
+            ],
+            "📺 Android TV / TV Box / Fire Stick": [
+                { texto: "Instala la aplicación Downloader" },
+                { texto: "Abre Downloader" },
+                { texto: "Escribe cualquiera de estas opciones:" },
+                { texto: "• Código Downloader:", codigo: "5822304" },
+                { texto: "• URL:", enlace: "http://aftv.news/5822304" },
+                { texto: "• URL:", enlace: "https://bitcc.net/flujo-tv-v861" },
+                { texto: "Descarga el APK y selecciona Instalar" },
+                { texto: "Pulsa Abrir e ingresa tus credenciales" }
+            ],
+            "💻 PC": [
+                { texto: "Usa un emulador Android como BlueStacks o Nox" },
+                { texto: "Instala la app desde el APK" },
+                { texto: "Inicia sesión con tus credenciales" }
+            ]
+        },
+        nota: "3 dispositivos simultáneos"
     },
-    {
-        id: 'tele-latino',
-        nombre: 'Tele Latino',
-        icono: 'fa-solid fa-play-circle',
-        descripcion: 'Aplicación IPTV con canales latinos, películas y series.',
-        categorias: [
-            {
-                titulo: '📱 Versión 5.39.1 (Revendedores) - Android TV',
-                pasos: [
-                    'Descargar desde: <a href="https://bit.ly/telelatino2026" target="_blank">https://bit.ly/telelatino2026</a>',
-                    'O mediante Downloader con código: <strong>8849458</strong>'
-                ]
-            },
-            {
-                titulo: '📱 Versión 5.46.7 (Con publicidad) - Android TV',
-                pasos: [
-                    'Descargar desde: <a href="http://aftv.news/2304825" target="_blank">http://aftv.news/2304825</a>',
-                    'O mediante Downloader con código: <strong>2304825</strong>'
-                ]
-            },
-            {
-                titulo: '📱 Celulares Android',
-                pasos: [
-                    'Descargar desde: <a href="http://aftv.news/4208187" target="_blank">http://aftv.news/4208187</a>',
-                    'Descargar el APK y abrir el archivo',
-                    'Permitir aplicaciones desconocidas si es necesario',
-                    'Instalar, Abrir e Iniciar sesión'
-                ]
-            },
-            {
-                titulo: '💻 PC',
-                pasos: [
-                    'No requiere instalación',
-                    'Ingresa directamente desde: <a href="http://www.tele-latino.online" target="_blank">http://www.tele-latino.online</a>',
-                    'Inicia sesión con tu cuenta'
-                ]
-            }
-        ]
+
+    telelatino: {
+        nombre: "Tele Latino",
+        icono: "fa-solid fa-play-circle",
+        descripcion: "Aplicación IPTV con canales latinos, películas y series.",
+        dispositivos: {
+            "📱 Versión 5.39.1 (Revendedores)": [
+                { texto: "Descargar desde:", enlace: "https://bit.ly/telelatino2026" },
+                { texto: "O mediante Downloader con código:", codigo: "8849458" },
+                { texto: "Descargar el APK" },
+                { texto: "Instalar y abrir la aplicación" }
+            ],
+            "📱 Versión 5.46.7 (Con publicidad)": [
+                { texto: "Descargar desde:", enlace: "http://aftv.news/2304825" },
+                { texto: "O mediante Downloader con código:", codigo: "2304825" },
+                { texto: "Descargar el APK" },
+                { texto: "Instalar y abrir la aplicación" }
+            ],
+            "📱 Celulares Android": [
+                { texto: "Descargar desde:", enlace: "http://aftv.news/4208187" },
+                { texto: "Descargar el APK y abrir el archivo" },
+                { texto: "Permitir aplicaciones desconocidas si es necesario" },
+                { texto: "Instalar, Abrir e Iniciar sesión" }
+            ],
+            "💻 PC": [
+                { texto: "No requiere instalación" },
+                { texto: "Ingresa directamente desde:", enlace: "http://www.tele-latino.online" },
+                { texto: "Inicia sesión con tu cuenta" }
+            ]
+        },
+        nota: "3 dispositivos simultáneos"
     },
-    {
-        id: 'stella-tv',
-        nombre: 'Stella TV',
-        icono: 'fa-solid fa-star',
-        descripcion: 'Aplicación IPTV con contenido en vivo y bajo demanda.',
-        categorias: [
-            {
-                titulo: '📱 Celulares Android',
-                pasos: [
-                    'Descarga desde: <a href="https://bit.ly/43hQCxU" target="_blank">https://bit.ly/43hQCxU</a>',
-                    'Descargar el APK y abrir el archivo',
-                    'Permitir aplicaciones desconocidas',
-                    'Instalar, Abrir e Iniciar sesión'
-                ]
-            },
-            {
-                titulo: '📺 Android TV, TV Box, Fire TV y PC',
-                pasos: [
-                    'Descarga desde: <a href="https://bit.ly/stellatv0626" target="_blank">https://bit.ly/stellatv0626</a>',
-                    'También puedes usar Downloader con código: <strong>2177080</strong>',
-                    'Instalar Downloader y abrirlo',
-                    'Escribir el código 2177080',
-                    'Descargar, Instalar, Abrir e Iniciar sesión',
-                    '⚠️ <strong>Importante:</strong> Antes de iniciar sesión, verifica que la fecha, la hora y la conexión a Internet del dispositivo sean correctas.'
-                ]
-            }
-        ]
+
+    stellatv: {
+        nombre: "Stella TV",
+        icono: "fa-solid fa-star",
+        descripcion: "Aplicación IPTV con contenido en vivo y bajo demanda.",
+        dispositivos: {
+            "📱 Celulares Android": [
+                { texto: "Descarga desde:", enlace: "https://bit.ly/43hQCxU" },
+                { texto: "Descargar el APK y abrir el archivo" },
+                { texto: "Permitir aplicaciones desconocidas" },
+                { texto: "Instalar, Abrir e Iniciar sesión" }
+            ],
+            "📺 Android TV / TV Box / Fire TV / PC": [
+                { texto: "Descarga desde:", enlace: "https://bit.ly/stellatv0626" },
+                { texto: "También puedes usar Downloader con código:", codigo: "2177080" },
+                { texto: "Instalar Downloader y abrirlo" },
+                { texto: "Escribir el código 2177080" },
+                { texto: "Descargar, Instalar, Abrir e Iniciar sesión" },
+                { texto: "⚠️ IMPORTANTE: Antes de iniciar sesión, verifica que la fecha, la hora y la conexión a Internet del dispositivo sean correctas." }
+            ]
+        },
+        nota: "3 dispositivos simultáneos"
     },
-    {
-        id: 'iptv-smarters',
-        nombre: 'IPTV Smarters Pro',
-        icono: 'fa-solid fa-play',
-        descripcion: 'Reproductor IPTV profesional para todos los dispositivos.',
-        categorias: [
-            {
-                titulo: '📱 Celular Android',
-                pasos: [
-                    'Descargar IPTV Smarters Pro desde Play Store',
-                    'Instalar la aplicación y abrirla',
-                    'Aceptar los términos',
-                    'Seleccionar "Xtream Codes API" o "Lista M3U"',
-                    'Ingresar las credenciales proporcionadas por el proveedor',
-                    'Guardar la configuración y disfrutar'
-                ]
-            },
-            {
-                titulo: '📺 Android TV, TV Box y Fire Stick',
-                pasos: [
-                    'Instalar IPTV Smarters Pro desde la tienda de aplicaciones',
-                    'Abrir la aplicación',
-                    'Seleccionar el método de acceso',
-                    'Ingresar usuario, contraseña y URL del servidor',
-                    'Guardar y comenzar a disfrutar del servicio'
-                ]
-            },
-            {
-                titulo: '💻 PC',
-                pasos: [
-                    'Descargar la versión para Windows desde el sitio oficial de IPTV Smarters Pro',
-                    'Ejecutar el instalador',
-                    'Instalar y abrir el programa',
-                    'Iniciar sesión con las credenciales del servicio IPTV'
-                ]
-            }
-        ]
+
+    iptvsmarters: {
+        nombre: "IPTV Smarters Pro",
+        icono: "fa-solid fa-play",
+        descripcion: "Reproductor IPTV profesional para todos los dispositivos.",
+        dispositivos: {
+            "📱 Celular Android": [
+                { texto: "Descargar IPTV Smarters Pro desde Play Store" },
+                { texto: "Instalar la aplicación y abrirla" },
+                { texto: "Aceptar los términos" },
+                { texto: "Seleccionar 'Xtream Codes API' o 'Lista M3U'" },
+                { texto: "Ingresar las credenciales proporcionadas por el proveedor" },
+                { texto: "Guardar la configuración y disfrutar" }
+            ],
+            "📺 Android TV / TV Box / Fire Stick": [
+                { texto: "Instalar IPTV Smarters Pro desde la tienda de aplicaciones" },
+                { texto: "Abrir la aplicación" },
+                { texto: "Seleccionar el método de acceso" },
+                { texto: "Ingresar usuario, contraseña y URL del servidor" },
+                { texto: "Guardar y comenzar a disfrutar del servicio" }
+            ],
+            "💻 PC": [
+                { texto: "Descargar la versión para Windows desde el sitio oficial de IPTV Smarters Pro" },
+                { texto: "Ejecutar el instalador" },
+                { texto: "Instalar y abrir el programa" },
+                { texto: "Iniciar sesión con las credenciales del servicio IPTV" }
+            ]
+        },
+        nota: "Multidispositivo"
     }
-];
+};
 
-// Función para renderizar las instalaciones
+// ===== FUNCIÓN PARA RENDERIZAR INSTALACIONES =====
 function renderInstalacion() {
     const grid = document.getElementById('instalacionGrid');
     if (!grid) return;
     
-    let html = '';
-    INSTALACIONES.forEach(inst => {
-        html += `
+    const keys = Object.keys(INSTALACION);
+    if (keys.length === 0) {
+        grid.innerHTML = `<p style="text-align:center;color:var(--gray-dark);grid-column:1/-1;padding:40px 0;">Próximamente más guías de instalación</p>`;
+        return;
+    }
+    
+    grid.innerHTML = keys.map(key => {
+        const item = INSTALACION[key];
+        return `
             <div class="instalacion-card">
                 <div class="instalacion-header">
-                    <i class="${inst.icono}"></i>
-                    <h3>${inst.nombre}</h3>
+                    <i class="${item.icono || 'fa-solid fa-download'}"></i>
+                    <h3>${item.nombre}</h3>
                 </div>
-                <p class="instalacion-desc">${inst.descripcion}</p>
+                <p class="instalacion-desc">${item.descripcion || ''}</p>
                 <div class="instalacion-body">
-        `;
-        
-        inst.categorias.forEach(cat => {
-            html += `
-                <div class="instalacion-categoria">
-                    <h4>${cat.titulo}</h4>
-                    <ol>
-            `;
-            cat.pasos.forEach(paso => {
-                html += `<li>${paso}</li>`;
-            });
-            html += `
-                    </ol>
+                    ${Object.keys(item.dispositivos).map(tipo => `
+                        <div class="instalacion-categoria">
+                            <h4>${tipo}</h4>
+                            <ol>
+                                ${item.dispositivos[tipo].map(d => `
+                                    <li>
+                                        ${d.texto || ''}
+                                        ${d.enlace ? ` <a href="${d.enlace}" target="_blank" class="link-download">${d.enlace}</a>` : ''}
+                                        ${d.codigo ? ` <span class="codigo-downloader">📥 Código: ${d.codigo}</span>` : ''}
+                                    </li>
+                                `).join('')}
+                            </ol>
+                        </div>
+                    `).join('')}
                 </div>
-            `;
-        });
-        
-        html += `
-                </div>
+                ${item.nota ? `<div class="instalacion-nota">📌 ${item.nota}</div>` : ''}
             </div>
         `;
-    });
-    
-    grid.innerHTML = html;
+    }).join('');
 }
-
-// Ejecutar al cargar la página
-document.addEventListener('DOMContentLoaded', renderInstalacion);
