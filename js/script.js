@@ -1,5 +1,5 @@
 // ============================================
-// SISA STREAMING - FUNCIONALIDADES PRINCIPALES  script.js
+// SISA STREAMING - FUNCIONALIDADES PRINCIPALES
 // ============================================
 
 // ===== CONTADOR DE VISITAS =====
@@ -12,13 +12,11 @@ function updateVisitorCount() {
     }
     localStorage.setItem('sisaVisits', count);
     
-    // Actualizar en la sección de estadísticas
     const visitorElement = document.getElementById('visitorCount');
     if (visitorElement) {
         visitorElement.textContent = count.toLocaleString();
     }
     
-    // Actualizar en el footer
     const footerVisitor = document.getElementById('footerVisitorCount');
     if (footerVisitor) {
         footerVisitor.textContent = count.toLocaleString();
@@ -51,7 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
             header.classList.remove('scrolled');
         }
         
-        // Botón volver arriba
         if (window.scrollY > 500) {
             backToTop.classList.add('visible');
         } else {
@@ -59,7 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Volver arriba
     if (backToTop) {
         backToTop.addEventListener('click', function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -116,7 +112,6 @@ document.addEventListener('DOMContentLoaded', function() {
     renderApps('all');
     renderGames();
     renderInstalacion();
-    renderTutoriales();
     renderPromociones();
     renderFAQ();
     renderReferencias(1);
@@ -247,12 +242,11 @@ function renderGames(busqueda = '') {
     `).join('');
 }
 
-// ===== RENDER INSTALACIÓN (VERSIÓN MEJORADA) =====
+// ===== RENDER INSTALACIÓN =====
 function renderInstalacion() {
     const grid = document.getElementById('instalacionGrid');
     if (!grid) return;
     
-    // Verificar si existe INSTALACION
     if (typeof INSTALACION === 'undefined') {
         grid.innerHTML = `<p style="text-align:center;color:var(--gray-dark);grid-column:1/-1;padding:40px 0;">⚠️ No se encontraron guías de instalación.</p>`;
         return;
@@ -281,40 +275,15 @@ function renderInstalacion() {
                                 ${item.dispositivos[tipo].map(d => `
                                     <li>
                                         ${d.texto || ''}
-                                        ${d.enlace ? ` <a href="${d.enlace}" target="_blank" class="link-download" style="color:var(--gold);word-break:break-all;">🔗 Enlace</a>` : ''}
-                                        ${d.codigo ? ` <span class="codigo-downloader" style="display:inline-block;background:var(--gold);color:var(--black);padding:2px 10px;border-radius:4px;font-weight:bold;font-size:12px;">📥 Código: ${d.codigo}</span>` : ''}
+                                        ${d.enlace ? ` <a href="${d.enlace}" target="_blank" class="link-download">🔗 Enlace</a>` : ''}
+                                        ${d.codigo ? ` <span class="codigo-downloader">📥 Código: ${d.codigo}</span>` : ''}
                                     </li>
                                 `).join('')}
                             </ol>
                         </div>
                     `).join('')}
                 </div>
-                ${item.nota ? `<div class="instalacion-nota" style="margin-top:15px;padding:10px;background:rgba(212,175,55,0.08);border-radius:8px;border-left:3px solid var(--gold);font-size:13px;color:var(--gray-dark);">📌 ${item.nota}</div>` : ''}
-            </div>
-        `;
-    }).join('');
-}
-
-// ===== RENDER TUTORIALES =====
-function renderTutoriales() {
-    const grid = document.getElementById('tutorialesGrid');
-    if (!grid || !TUTORIALES) return;
-    
-    const keys = Object.keys(TUTORIALES);
-    if (keys.length === 0) {
-        grid.innerHTML = `<p style="text-align:center;color:var(--gray-dark);grid-column:1/-1;padding:40px 0;">Próximamente más tutoriales</p>`;
-        return;
-    }
-    
-    grid.innerHTML = keys.map(key => {
-        const t = TUTORIALES[key];
-        return `
-            <div class="tutorial-card" onclick="openTutorial('${key}')">
-                <h4>${t.titulo}</h4>
-                <p>${t.descripcion || ''}</p>
-                <ul class="tutorial-pasos">
-                    ${t.pasos ? t.pasos.map(p => `<li>${p}</li>`).join('') : ''}
-                </ul>
+                ${item.nota ? `<div class="instalacion-nota">📌 ${item.nota}</div>` : ''}
             </div>
         `;
     }).join('');
@@ -325,8 +294,7 @@ function renderPromociones() {
     const grid = document.getElementById('promocionesGrid');
     if (!grid) return;
     
-    // Verificar si existe PROMOCIONES y filtrar activas
-    const promocionesActivas = PROMOCIONES ? PROMOCIONES.filter(p => p.activa === true) : [];
+    const promocionesActivas = typeof PROMOCIONES !== 'undefined' ? PROMOCIONES.filter(p => p.activa === true) : [];
     
     if (promocionesActivas.length === 0) {
         grid.innerHTML = `
@@ -341,11 +309,15 @@ function renderPromociones() {
     
     grid.innerHTML = promocionesActivas.map(promo => `
         <div class="promocion-card">
-            ${promo.icono ? `<div class="promo-icon"><i class="${promo.icono}"></i></div>` : ''}
+            <div class="promo-icon"><i class="${promo.icono || 'fa-solid fa-tag'}"></i></div>
             <h4>${promo.titulo}</h4>
             <p>${promo.descripcion}</p>
-            ${promo.fecha ? `<div class="promo-fecha">📅 ${promo.fecha}</div>` : ''}
+            <div class="promo-fecha">📅 ${promo.fecha || ''}</div>
             <span class="promo-badge activa">🔥 Activa</span>
+            <a href="https://wa.me/593967869653?text=Hola,%20quiero%20aprovechar%20la%20promoción:%20${encodeURIComponent(promo.titulo)}" 
+               target="_blank" class="promo-btn">
+                <i class="fab fa-whatsapp"></i> Aprovechar
+            </a>
         </div>
     `).join('');
 }
@@ -353,7 +325,7 @@ function renderPromociones() {
 // ===== RENDER FAQ =====
 function renderFAQ() {
     const container = document.getElementById('faqContainer');
-    if (!container || !FAQ) return;
+    if (!container || typeof FAQ === 'undefined') return;
     
     container.innerHTML = FAQ.map((item, index) => `
         <div class="faq-item">
@@ -373,7 +345,6 @@ function toggleFAQ(btn) {
     const item = btn.closest('.faq-item');
     const isActive = item.classList.contains('active');
     
-    // Cerrar todos
     document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
     
     if (!isActive) {
@@ -388,7 +359,7 @@ const referenciasPorPagina = 24;
 function renderReferencias(page, busqueda = '') {
     const grid = document.getElementById('referenciasGrid');
     const pagination = document.getElementById('referenciasPagination');
-    if (!grid || !REFERENCIAS) return;
+    if (!grid || typeof REFERENCIAS === 'undefined') return;
     
     let referencias = REFERENCIAS;
     
@@ -416,7 +387,6 @@ function renderReferencias(page, busqueda = '') {
         </div>
     `).join('');
     
-    // Paginación
     let pagHTML = '';
     if (totalPages > 1) {
         pagHTML += `<button onclick="renderReferencias(1)" ${currentReferenciasPage === 1 ? 'disabled' : ''}><i class="fas fa-chevron-left"></i></button>`;
@@ -457,7 +427,6 @@ function openModal(appKey) {
         <h4 style="color:var(--gold);font-size:16px;margin:15px 0 10px;">📋 Planes disponibles:</h4>
     `;
     
-    // Generar planes desde precios.js
     const tipos = Object.keys(precios);
     tipos.forEach(tipo => {
         if (tipo === 'nota') {
@@ -508,7 +477,6 @@ function openModal(appKey) {
         }
     });
     
-    // Botón WhatsApp
     const mensaje = encodeURIComponent(`Hola, quiero información sobre ${app.nombre}`);
     html += `
         <a href="https://wa.me/593967869653?text=${mensaje}" target="_blank" class="modal-whatsapp">
@@ -530,12 +498,10 @@ function closeModal() {
     }
 }
 
-// Cerrar modal con Escape
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeModal();
 });
 
-// Cerrar modal click fuera
 document.addEventListener('click', function(e) {
     const modal = document.getElementById('planModal');
     if (modal && e.target === modal) closeModal();
@@ -546,14 +512,6 @@ function comprarGame(gameKey) {
     const game = GAMES[gameKey];
     if (!game) return;
     const mensaje = encodeURIComponent(`Hola, quiero comprar ${game.nombre}`);
-    window.open(`https://wa.me/593967869653?text=${mensaje}`, '_blank');
-}
-
-// ===== ABRIR TUTORIAL =====
-function openTutorial(key) {
-    const tutorial = TUTORIALES[key];
-    if (!tutorial) return;
-    const mensaje = encodeURIComponent(`Hola, necesito ayuda con ${tutorial.titulo}`);
     window.open(`https://wa.me/593967869653?text=${mensaje}`, '_blank');
 }
 

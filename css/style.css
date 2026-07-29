@@ -1,5 +1,5 @@
 /* ============================================
-   SISA STREAMING - ESTILOS PRINCIPALES
+   SISA STREAMING - ESTILOS PRINCIPALES  --- style.css
    Paleta: Negro #050505, Dorado #D4AF37
    ============================================ */
 
@@ -805,49 +805,143 @@ body {
     font-style: italic;
 }
 
-/* ===== TUTORIALES ===== */
-.tutoriales {
-    background: var(--black);
+
+/* ===== ESTILOS ADICIONALES PARA INSTALACIÓN ===== */
+.instalacion-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
 }
-.tutoriales-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 25px;
+.instalacion-header i {
+    font-size: 28px;
+    color: var(--gold);
 }
-.tutorial-card {
+.instalacion-header h3 {
+    color: var(--white);
+    font-size: 20px;
+    margin: 0;
+}
+.instalacion-desc {
+    color: var(--gray-dark);
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+.instalacion-categoria {
+    margin-bottom: 15px;
+    padding: 12px 15px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+}
+.instalacion-categoria h4 {
+    color: var(--gold);
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+.instalacion-categoria ol {
+    padding-left: 20px;
+    margin: 0;
+}
+.instalacion-categoria ol li {
+    color: var(--gray);
+    font-size: 13px;
+    margin-bottom: 4px;
+    line-height: 1.6;
+}
+.codigo-downloader {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--black);
+    padding: 2px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 12px;
+}
+.link-download {
+    color: var(--gold);
+    text-decoration: none;
+    word-break: break-all;
+    font-size: 13px;
+}
+.link-download:hover {
+    text-decoration: underline;
+}
+.instalacion-nota {
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: rgba(212, 175, 55, 0.08);
+    border-radius: 8px;
+    border-left: 3px solid var(--gold);
+    font-size: 13px;
+    color: var(--gray-dark);
+}
+
+
+/* ===== TABLA DE COMPATIBILIDAD ===== */
+.tabla-compatibilidad {
     background: var(--black-light);
     border-radius: var(--radius);
     padding: 25px;
-    border: 1px solid rgba(212, 175, 55, 0.1);
-    transition: var(--transition);
-    cursor: pointer;
+    margin-bottom: 40px;
+    border: 1px solid rgba(212, 175, 55, 0.15);
 }
-.tutorial-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--gold);
-}
-.tutorial-card h4 {
-    font-size: 18px;
+
+.tabla-compatibilidad h3 {
     color: var(--gold);
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
 }
-.tutorial-card p {
-    color: var(--gray-dark);
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.tabla-compatibilidad table {
+    width: 100%;
+    border-collapse: collapse;
     font-size: 14px;
-    margin: 8px 0;
 }
-.tutorial-card .tutorial-pasos {
-    margin-top: 10px;
+
+.tabla-compatibilidad table thead th {
+    background: var(--gold);
+    color: var(--black);
+    padding: 12px 16px;
+    text-align: center;
+    font-weight: 600;
 }
-.tutorial-card .tutorial-pasos li {
+
+.tabla-compatibilidad table tbody td {
+    padding: 10px 16px;
+    text-align: center;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
     color: var(--gray);
-    font-size: 13px;
-    padding: 3px 0;
-    list-style: none;
 }
-.tutorial-card .tutorial-pasos li::before {
-    content: '▸ ';
+
+.tabla-compatibilidad table tbody tr:hover {
+    background: rgba(212, 175, 55, 0.05);
+}
+
+.tabla-compatibilidad table tbody td:first-child {
+    text-align: left;
+    color: var(--white);
+    font-weight: 500;
+}
+
+.tabla-compatibilidad table tbody td:first-child strong {
     color: var(--gold);
 }
+
+@media (max-width: 768px) {
+    .tabla-compatibilidad table {
+        font-size: 12px;
+    }
+    .tabla-compatibilidad table thead th,
+    .tabla-compatibilidad table tbody td {
+        padding: 8px 10px;
+    }
+}
+
 
 /* ===== PROMOCIONES ===== */
 .promociones {
@@ -866,6 +960,10 @@ body {
     transition: var(--transition);
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 .promocion-card::before {
     content: '';
@@ -889,6 +987,7 @@ body {
 .promocion-card h4 {
     font-size: 20px;
     color: var(--gold);
+    margin-bottom: 8px;
 }
 .promocion-card p {
     color: var(--gray);
@@ -897,7 +996,8 @@ body {
 }
 .promocion-card .promo-fecha {
     color: var(--gray-dark);
-    font-size: 12px;
+    font-size: 13px;
+    margin-bottom: 10px;
 }
 .promocion-card .promo-badge {
     display: inline-block;
@@ -907,7 +1007,7 @@ body {
     font-weight: 600;
     background: var(--gold);
     color: var(--black);
-    margin-top: 10px;
+    margin: 10px 0 15px;
 }
 .promocion-card .promo-badge.activa {
     background: #4CAF50;
@@ -915,6 +1015,24 @@ body {
 }
 .promocion-card .promo-badge.inactiva {
     background: var(--gray-dark);
+    color: var(--white);
+}
+.promo-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #25D366;
+    color: var(--white);
+    padding: 10px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: var(--transition);
+}
+.promo-btn:hover {
+    transform: scale(1.05);
+    background: #1DA851;
     color: var(--white);
 }
 .promociones-mensaje {
@@ -935,6 +1053,7 @@ body {
     color: var(--gray-dark);
     font-size: 16px;
 }
+
 
 /* ===== REFERENCIAS ===== */
 .referencias {

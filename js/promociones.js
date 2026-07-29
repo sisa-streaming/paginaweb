@@ -35,6 +35,7 @@ const PROMOCIONES = [
         fecha: "Válido todo el mes",
         activa: true,
         icono: "fa-solid fa-gamepad"
+        
     }
 ];
 
