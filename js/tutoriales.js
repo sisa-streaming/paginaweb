@@ -44,7 +44,7 @@ const TUTORIALES = {
             "Paso 1: Inicia sesión en Crunchyroll",
             "Paso 2: Selecciona tu perfil",
             "Paso 3: Busca tu anime favorito en el catálogo",
-            "Paso 4: Disfruta en calidad 1080p o 4K"
+            "Paso 4: Disfruta en calidad 1080p o 4K" 
         ]
     },
     flujotv: {
