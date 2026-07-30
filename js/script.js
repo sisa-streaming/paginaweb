@@ -6,7 +6,7 @@
 function updateVisitorCount() {
     let count = localStorage.getItem('sisaVisits');
     if (count === null) {
-        count = 1000;
+        count = 233;
     } else {
         count = parseInt(count) + 1;
     }
