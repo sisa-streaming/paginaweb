@@ -9,7 +9,7 @@ const GAMES = {
         imagen: "freefire.png",
         categoria: "Battle Royale",
         productos: [
-            { nombre: "100 + 10 Diamantes", precio: "1.50" },
+            { nombre: "100 + 10 Diamantes", precio: "1.25" },
             { nombre: "310 + 31 Diamantes", precio: "3.25" },
             { nombre: "520 + 52 Diamantes", precio: "5.50" },
             { nombre: "1060 + 106 Diamantes", precio: "10.00" },
