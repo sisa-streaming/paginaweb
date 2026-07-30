@@ -1716,7 +1716,7 @@ body {
 /* ===== CARRITO DE COMPRAS ===== */
 .cart-float {
     position: fixed;
-    bottom: 100px;
+    bottom: 160px; /* ← Cambiado de 100px a 160px para que no se superponga */
     right: 30px;
     z-index: 998;
     background: var(--gold);
@@ -1732,6 +1732,54 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.cart-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(212, 175, 55, 0.5);
+}
+
+.cart-float .cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #FF6B6B;
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== RESPONSIVE: AJUSTE PARA MÓVILES ===== */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        font-size: 28px;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .back-to-top {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+        bottom: 85px;
+        right: 20px;
+    }
+    
+    .cart-float {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        bottom: 140px; /* ← Ajustado para móviles */
+        right: 20px;
+    }
 }
 
 .cart-float:hover {
