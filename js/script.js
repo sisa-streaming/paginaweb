@@ -354,7 +354,7 @@ function toggleFAQ(btn) {
 
 // ===== RENDER REFERENCIAS =====
 let currentReferenciasPage = 1;
-const referenciasPorPagina = 20;
+const referenciasPorPagina = 18;
 
 function renderReferencias(page, busqueda = '') {
     const grid = document.getElementById('referenciasGrid');
