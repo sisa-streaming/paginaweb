@@ -1069,7 +1069,8 @@ body {
     overflow: hidden;
     border: 1px solid rgba(212, 175, 55, 0.1);
     transition: var(--transition);
-    aspect-ratio: 1;
+    aspect-ratio: 9 / 19; /* Proporción para 1079×2303 */
+    position: relative;
 }
 .referencia-item img {
     width: 100%;
@@ -1080,6 +1081,7 @@ body {
 .referencia-item:hover {
     border-color: var(--gold);
     transform: scale(1.02);
+    z-index: 2;
 }
 .referencia-item:hover img {
     filter: brightness(1.1);
