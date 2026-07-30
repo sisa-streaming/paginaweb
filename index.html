@@ -34,6 +34,12 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <!-- ===== BOTÓN FLOTANTE DE CARRITO ===== -->
+    <button class="cart-float" id="cartFloat" aria-label="Ver carrito">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+
     <!-- ===== BOTÓN VOLVER ARRIBA ===== -->
     <button id="backToTop" class="back-to-top" aria-label="Volver arriba">
         <i class="fas fa-arrow-up"></i>
@@ -101,6 +107,7 @@
     </section>
 
 
+
     <!-- ===== SECCIÓN 2: QUIÉNES SOMOS ===== -->
     <section id="quienes-somos" class="section quienes-somos">
         <div class="container">
@@ -110,30 +117,55 @@
             </div>
             <div class="quienes-content">
                 <div class="quienes-text">
-                    <p>En <strong>SISA STREAMING</strong> somos una empresa especializada en servicios de entretenimiento digital. Con <strong>más de 2 años en el mercado</strong>, nos hemos consolidado como un referente en plataformas de streaming, videojuegos y recargas digitales.</p>
-                    <p>Nuestra misión es brindar entretenimiento accesible y confiable, con atención personalizada y más de <strong>200 referencias reales</strong> que avalan nuestro compromiso con la calidad y la satisfacción del cliente.</p>
+                    <p>En <strong>SISA STREAMING</strong> somos una empresa especializada en servicios digitales de entretenimiento, productividad y tecnología. Desde hace <strong>más de 2 años</strong>, ayudamos a cientos de clientes a disfrutar de sus plataformas favoritas con un servicio rápido, seguro y confiable.</p>
+                    
+                    <p>Ofrecemos acceso a plataformas de streaming, música, televisión en vivo, herramientas de inteligencia artificial, aplicaciones premium y recargas para videojuegos, siempre acompañados de una <strong>atención personalizada</strong> antes, durante y después de cada compra.</p>
+                    
+                    <p>Nuestro compromiso es brindar una experiencia de calidad, basada en la <strong>confianza, la transparencia y el soporte continuo</strong>, convirtiéndonos en una opción confiable para quienes buscan servicios digitales al mejor precio.</p>
+                    
                     <div class="quienes-valores">
                         <div class="valor-item">
                             <i class="fas fa-bolt"></i>
                             <span>Entrega Rápida</span>
                         </div>
                         <div class="valor-item">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Atención Personalizada</span>
+                        </div>
+                        <div class="valor-item">
                             <i class="fas fa-shield-alt"></i>
-                            <span>Servicio Garantizado</span>
+                            <span>Soporte Garantizado</span>
                         </div>
                         <div class="valor-item">
                             <i class="fas fa-star"></i>
-                            <span>+200 Referencias</span>
+                            <span>+200 Referencias Reales</span>
                         </div>
                         <div class="valor-item">
                             <i class="fas fa-clock"></i>
-                            <span>2+ Años en el Mercado</span>
+                            <span>2+ Años de Experiencia</span>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Misión y Visión -->
+                <div class="mision-vision">
+                    <div class="mision-card">
+                        <div class="mv-icon"><i class="fas fa-bullseye"></i></div>
+                        <h3>Misión</h3>
+                        <p>Brindar servicios digitales de entretenimiento, productividad y tecnología con calidad, rapidez y seguridad, ofreciendo soluciones accesibles, atención personalizada y soporte continuo que garanticen la satisfacción y confianza de nuestros clientes.</p>
+                    </div>
+                    <div class="vision-card">
+                        <div class="mv-icon"><i class="fas fa-eye"></i></div>
+                        <h3>Visión</h3>
+                        <p>Ser una empresa líder en la comercialización de servicios digitales en Ecuador y expandir nuestra presencia a nivel nacional e internacional, destacándonos por la innovación, la confianza, la excelencia en el servicio y el compromiso con nuestros clientes.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+
+
 
     <!-- ===== SECCIÓN 3: ¿POR QUÉ ELEGIRNOS? ===== -->
     <section class="section why-us">
@@ -503,6 +535,30 @@
         </div>
     </div>
 
+
+<!-- ===== MODAL DEL CARRITO ===== -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-modal-content">
+            <div class="cart-modal-header">
+                <h3><i class="fas fa-shopping-cart"></i> Mi Carrito</h3>
+                <button class="cart-modal-close" onclick="closeCart()">&times;</button>
+            </div>
+            <div class="cart-modal-body" id="cartBody">
+                <!-- Contenido dinámico -->
+            </div>
+            <div class="cart-modal-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotal">$0.00</span>
+                </div>
+                <button class="btn btn-primary" onclick="checkout()" id="checkoutBtn" disabled>
+                    <i class="fab fa-whatsapp"></i> Comprar por WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+
     <!-- ===== SCRIPTS ===== -->
     <script src="js/precios.js"></script>
     <script src="js/apps.js"></script>
@@ -512,5 +568,6 @@
     <script src="js/instalacion.js"></script>
     <script src="js/promociones.js"></script>
     <script src="js/script.js"></script>
+
 </body>
 </html>

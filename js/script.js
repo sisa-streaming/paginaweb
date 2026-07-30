@@ -193,7 +193,7 @@ function renderApps(categoria, busqueda = '') {
                     ${app.etiquetas ? app.etiquetas.map(tag => `<span class="app-tag ${tag.toLowerCase()}">${tag}</span>`).join('') : ''}
                 </div>
                 <button class="app-card-btn" onclick="openModal('${app.key}')">
-                    <i class="fas fa-tag"></i> Ver Planes
+                    <i class="fas fa-shopping-cart"></i> Ver Planes
                 </button>
             </div>
         </div>
@@ -405,7 +405,7 @@ function renderReferencias(page, busqueda = '') {
     pagination.innerHTML = pagHTML;
 }
 
-// ===== OPEN MODAL =====
+// ===== OPEN MODAL CON CARRITO =====
 function openModal(appKey) {
     const modal = document.getElementById('planModal');
     const body = document.getElementById('modalBody');
@@ -426,6 +426,9 @@ function openModal(appKey) {
         </div>
         <h4 style="color:var(--gold);font-size:16px;margin:15px 0 10px;">📋 Planes disponibles:</h4>
     `;
+    
+    // Variable para almacenar todos los planes
+    let planesHTML = '';
     
     const tipos = Object.keys(precios);
     tipos.forEach(tipo => {
@@ -449,27 +452,43 @@ function openModal(appKey) {
                         } else if (item !== 'renovable') {
                             const esRenovable = detalles.renovable || plan.renovable || false;
                             const garantia = detalles.garantia || 'Todo el plan';
+                            const precio = detalles[item];
+                            const nombrePlan = `${sub} - ${item}`;
+                            
                             html += `
                                 <div class="modal-plan">
                                     <div>
-                                        <span class="plan-name">${sub} - ${item}</span>
+                                        <span class="plan-name">${nombrePlan}</span>
                                         ${esRenovable ? '<span class="plan-tag">🔄 Renovable</span>' : ''}
                                         <span style="font-size:11px;color:var(--gray-dark);display:block;">Garantía: ${garantia}</span>
                                     </div>
-                                    <span class="plan-price">$${detalles[item]}</span>
+                                    <div style="display:flex;align-items:center;gap:12px;">
+                                        <span class="plan-price">$${precio}</span>
+                                        <button class="modal-cart-btn" onclick="addToCart('${app.nombre}', '${nombrePlan}', ${precio})">
+                                            <i class="fas fa-cart-plus"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             `;
                         }
                     });
                 } else if (typeof detalles === 'string' || typeof detalles === 'number') {
                     const esRenovable = plan.renovable || false;
+                    const nombrePlan = sub;
+                    const precio = detalles;
+                    
                     html += `
                         <div class="modal-plan">
                             <div>
-                                <span class="plan-name">${sub}</span>
+                                <span class="plan-name">${nombrePlan}</span>
                                 ${esRenovable ? '<span class="plan-tag">🔄 Renovable</span>' : ''}
                             </div>
-                            <span class="plan-price">$${detalles}</span>
+                            <div style="display:flex;align-items:center;gap:12px;">
+                                <span class="plan-price">$${precio}</span>
+                                <button class="modal-cart-btn" onclick="addToCart('${app.nombre}', '${nombrePlan}', ${precio})">
+                                    <i class="fas fa-cart-plus"></i>
+                                </button>
+                            </div>
                         </div>
                     `;
                 }
@@ -477,11 +496,17 @@ function openModal(appKey) {
         }
     });
     
+    // Botón WhatsApp
     const mensaje = encodeURIComponent(`Hola, quiero información sobre ${app.nombre}`);
     html += `
-        <a href="https://wa.me/593967869653?text=${mensaje}" target="_blank" class="modal-whatsapp">
-            <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
-        </a>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:20px;">
+            <a href="https://wa.me/593967869653?text=${mensaje}" target="_blank" class="modal-whatsapp">
+                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+            </a>
+            <a href="https://wa.me/593967869653?text=${mensaje}" target="_blank" class="modal-whatsapp-secondary">
+                <i class="fab fa-whatsapp"></i> Consultar por WhatsApp
+            </a>
+        </div>
     `;
     
     body.innerHTML = html;
@@ -528,3 +553,143 @@ function sendWhatsApp(event) {
 console.log('🟡 SISA STREAMING cargado exitosamente');
 console.log('📱 Contacto: 0967869653');
 console.log('💻 Visita: https://sisa-streaming.github.io/paginaweb/');
+
+// ============================================
+// CARRITO DE COMPRAS
+// ============================================
+
+let carrito = [];
+
+// ===== AGREGAR AL CARRITO =====
+function addToCart(platform, plan, price) {
+    const item = {
+        id: Date.now(),
+        platform: platform,
+        plan: plan,
+        price: parseFloat(price)
+    };
+    
+    carrito.push(item);
+    updateCartUI();
+    
+    // Feedback visual
+    const btn = event.target;
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-check"></i> Agregado';
+    btn.style.background = '#4CAF50';
+    setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.style.background = '';
+    }, 2000);
+}
+
+// ===== ACTUALIZAR UI DEL CARRITO =====
+function updateCartUI() {
+    const badge = document.getElementById('cartBadge');
+    const body = document.getElementById('cartBody');
+    const total = document.getElementById('cartTotal');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    
+    // Actualizar badge
+    if (badge) {
+        badge.textContent = carrito.length;
+        badge.style.display = carrito.length > 0 ? 'flex' : 'none';
+    }
+    
+    // Actualizar contenido del modal
+    if (body) {
+        if (carrito.length === 0) {
+            body.innerHTML = `
+                <p style="color: var(--gray-dark); text-align: center; padding: 30px 0;">
+                    <i class="fas fa-shopping-basket" style="font-size: 40px; display: block; margin-bottom: 15px; opacity: 0.3;"></i>
+                    Tu carrito está vacío
+                </p>
+            `;
+        } else {
+            body.innerHTML = carrito.map((item, index) => `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.platform}</div>
+                        <div class="cart-item-detail">${item.plan}</div>
+                    </div>
+                    <span class="cart-item-price">$${item.price.toFixed(2)}</span>
+                    <button class="cart-item-remove" onclick="removeFromCart(${index})">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+    }
+    
+    // Actualizar total
+    if (total) {
+        const totalPrice = carrito.reduce((sum, item) => sum + item.price, 0);
+        total.textContent = `$${totalPrice.toFixed(2)}`;
+    }
+    
+    // Habilitar/deshabilitar botón
+    if (checkoutBtn) {
+        checkoutBtn.disabled = carrito.length === 0;
+    }
+}
+
+// ===== ELIMINAR DEL CARRITO =====
+function removeFromCart(index) {
+    carrito.splice(index, 1);
+    updateCartUI();
+}
+
+// ===== ABRIR CARRITO =====
+function openCart() {
+    const modal = document.getElementById('cartModal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+// ===== CERRAR CARRITO =====
+function closeCart() {
+    const modal = document.getElementById('cartModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// ===== FINALIZAR COMPRA (WHATSAPP) =====
+function checkout() {
+    if (carrito.length === 0) return;
+    
+    let mensaje = 'Hola, quiero comprar:%0A%0A';
+    let total = 0;
+    
+    carrito.forEach((item, index) => {
+        mensaje += `${index + 1}. ${item.platform} - ${item.plan} - $${item.price.toFixed(2)}%0A`;
+        total += item.price;
+    });
+    
+    mensaje += `%0A📊 Total: $${total.toFixed(2)}%0A%0A¡Espero tu confirmación para pagar! 🚀`;
+    
+    const url = `https://wa.me/593967869653?text=${mensaje}`;
+    window.open(url, '_blank');
+}
+
+// ===== CERRAR MODAL CON ESC =====
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeCart();
+});
+
+// ===== CERRAR MODAL CLICK FUERA =====
+document.addEventListener('click', function(e) {
+    const modal = document.getElementById('cartModal');
+    if (modal && e.target === modal) closeCart();
+});
+
+// ===== BOTÓN CARRITO =====
+document.addEventListener('DOMContentLoaded', function() {
+    const cartBtn = document.getElementById('cartFloat');
+    if (cartBtn) {
+        cartBtn.addEventListener('click', openCart);
+    }
+});
