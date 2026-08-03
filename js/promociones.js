@@ -3,40 +3,7 @@
 // SISA STREAMING
 // ============================================
 
-const PROMOCIONES = [
-    {
-        id: 1,
-        titulo: "🎉 Promo de Lanzamiento",
-        descripcion: "2x1 en cuentas de streaming durante el primer mes. ¡Aprovecha ahora!",
-        fecha: "Válido hasta el 31 de marzo",
-        activa: true,
-        icono: "fa-solid fa-gift"
-    },
-    {
-        id: 2,
-        titulo: "🔥 Oferta Especial",
-        descripcion: "15% de descuento en tu primera compra de cuentas originales.",
-        fecha: "Válido hasta agotar stock",
-        activa: true,
-        icono: "fa-solid fa-fire"
-    },
-    {
-        id: 3,
-        titulo: "📱 Recarga Móvil",
-        descripcion: "Combo de 3 meses de Spotify + YouTube Premium por solo $15.00",
-        fecha: "Promoción exclusiva",
-        activa: true,
-        icono: "fa-solid fa-mobile-screen"
-    },
-    {
-        id: 4,
-        titulo: "🎮 Gamer Pack",
-        descripcion: "Paquete especial de diamantes para Free Fire + Robux con 20% de descuento.",
-        fecha: "Válido todo el mes",
-        activa: true,
-        icono: "fa-solid fa-gamepad"
-    }
-];
+
 
 // ===== FUNCIÓN PARA RENDERIZAR PROMOCIONES =====
 function renderPromociones() {
