@@ -1940,3 +1940,138 @@ body {
     opacity: 0.5;
     cursor: not-allowed;
 }
+
+
+/* ===== ESTILOS PARA PROMOCIONES DE ANIVERSARIO ===== */
+
+.promo-descripcion {
+    color: var(--gray);
+    font-size: 14px;
+    margin: 8px 0 12px;
+    line-height: 1.6;
+}
+
+/* Beneficios de la promoción */
+.promo-beneficios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin: 10px 0 12px;
+    width: 100%;
+}
+
+.promo-beneficio {
+    background: rgba(212, 175, 55, 0.08);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: var(--gray);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.promo-beneficio i {
+    color: var(--gold);
+    margin-right: 4px;
+    font-size: 11px;
+}
+
+/* Restricciones */
+.promo-restricciones {
+    margin: 10px 0 12px;
+    padding: 10px 14px;
+    background: rgba(255, 107, 107, 0.05);
+    border-radius: 8px;
+    border-left: 3px solid #FF6B6B;
+    width: 100%;
+    text-align: left;
+}
+
+.promo-restricciones i {
+    color: #FF6B6B;
+    margin-right: 6px;
+}
+
+.promo-restricciones span {
+    display: block;
+    color: var(--gray-dark);
+    font-size: 12px;
+    margin: 2px 0;
+    padding-left: 20px;
+}
+
+.promo-restricciones span:first-of-type {
+    padding-left: 0;
+}
+
+/* Combos */
+.promo-combos {
+    width: 100%;
+    margin: 10px 0 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.promo-combo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 12px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 6px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.05);
+}
+
+.promo-combo-item:last-child {
+    border-bottom: none;
+}
+
+.combo-servicios {
+    color: var(--gray);
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.combo-precios {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.combo-normal {
+    color: var(--gray-dark);
+    font-size: 12px;
+    text-decoration: line-through;
+}
+
+.combo-oferta {
+    color: var(--gold);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Responsive para promociones */
+@media (max-width: 480px) {
+    .promo-combo-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        padding: 8px 12px;
+    }
+    
+    .combo-precios {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    
+    .promo-beneficios {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .promo-beneficio {
+        width: 100%;
+        text-align: center;
+    }
+}
