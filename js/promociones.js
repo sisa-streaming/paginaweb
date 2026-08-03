@@ -14,6 +14,7 @@ const PROMOCIONES = [
         fecha: "📅 Válido 4 y 5 de agosto",
         activa: true,
         icono: "fa-solid fa-gift",
+        imagen: "aniversario-15off.png", // ← IMAGEN
         tipo: "descuento",
         destacado: true,
         beneficios: [
@@ -40,6 +41,7 @@ const PROMOCIONES = [
         fecha: "📅 Del 3 al 5 de agosto",
         activa: true,
         icono: "fa-solid fa-film",
+        imagen: "aniversario-hbomax.png", // ← IMAGEN
         tipo: "bonificacion",
         destacado: true,
         beneficios: [
@@ -64,6 +66,7 @@ const PROMOCIONES = [
         fecha: "📅 Válido 6 y 7 de agosto",
         activa: true,
         icono: "fa-solid fa-star",
+        imagen: "aniversario-combos.png", // ← IMAGEN
         tipo: "combo",
         destacado: true,
         combos: [
@@ -144,7 +147,14 @@ function renderPromociones() {
         
         return `
             <div class="promocion-card" style="border-color: ${promo.color};">
-                <div class="promo-icon"><i class="${promo.icono || 'fa-solid fa-tag'}"></i></div>
+                <!-- ===== IMAGEN DE LA PROMOCIÓN ===== -->
+                ${promo.imagen ? `
+                    <div class="promo-imagen">
+                        <img src="img/promociones/${promo.imagen}" alt="${promo.titulo}" loading="lazy">
+                    </div>
+                ` : `
+                    <div class="promo-icon"><i class="${promo.icono || 'fa-solid fa-tag'}"></i></div>
+                `}
                 <h4>${promo.titulo}</h4>
                 <p class="promo-descripcion">${promo.descripcion}</p>
                 <div class="promo-fecha">${promo.fecha || ''}</div>

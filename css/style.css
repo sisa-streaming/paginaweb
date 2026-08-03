@@ -2075,3 +2075,49 @@ body {
         text-align: center;
     }
 }
+
+
+/* ===== IMÁGENES DE PROMOCIONES ===== */
+.promo-imagen {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    background: var(--black-light);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.promo-imagen img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: var(--transition);
+}
+
+.promocion-card:hover .promo-imagen img {
+    transform: scale(1.02);
+}
+
+/* Ajuste para cuando NO hay imagen */
+.promocion-card .promo-icon {
+    font-size: 40px;
+    color: var(--gold);
+    margin-bottom: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .promo-imagen {
+        max-height: 300px;
+    }
+    .promo-imagen img {
+        object-fit: cover;
+        height: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .promo-imagen {
+        max-height: 250px;
+    }
+}
