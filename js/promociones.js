@@ -4,6 +4,9 @@
 // ============================================
 
 const PROMOCIONES = [
+    // ==========================================
+    // PROMOCIÓN 1: 15% OFF EXCLUSIVO PARA CLIENTES
+    // ==========================================
     {
         id: 1,
         titulo: "🎉 15% OFF - Exclusivo para Clientes",
@@ -11,7 +14,7 @@ const PROMOCIONES = [
         fecha: "📅 Válido 4 y 5 de agosto",
         activa: true,
         icono: "fa-solid fa-gift",
-        imagen: "promo15off.png", // ← NUEVO NOMBRE SIN GUIONES
+        imagen: "promo15off.png", // ← NOMBRE CORRECTO
         tipo: "descuento",
         destacado: true,
         beneficios: [
@@ -27,6 +30,10 @@ const PROMOCIONES = [
         botonTexto: "Aprovechar 15% OFF",
         color: "#D4AF37"
     },
+
+    // ==========================================
+    // PROMOCIÓN 2: COMPRA UNA, LLÉVATE HBO MAX GRATIS
+    // ==========================================
     {
         id: 2,
         titulo: "🎁 Compra Una, Llévate HBO Max Gratis 15 Días",
@@ -34,7 +41,7 @@ const PROMOCIONES = [
         fecha: "📅 Del 3 al 5 de agosto",
         activa: true,
         icono: "fa-solid fa-film",
-        imagen: "promohbomax.png", // ← NUEVO NOMBRE SIN GUIONES
+        imagen: "promohbomax.png", // ← NOMBRE CORRECTO
         tipo: "bonificacion",
         destacado: true,
         beneficios: [
@@ -48,6 +55,10 @@ const PROMOCIONES = [
         botonTexto: "Aprovechar Oferta",
         color: "#8B5CF6"
     },
+
+    // ==========================================
+    // PROMOCIÓN 3: COMBOS DE ANIVERSARIO
+    // ==========================================
     {
         id: 3,
         titulo: "🔥 Combos de Aniversario",
@@ -55,7 +66,7 @@ const PROMOCIONES = [
         fecha: "📅 Válido 6 y 7 de agosto",
         activa: true,
         icono: "fa-solid fa-star",
-        imagen: "promocombos.png", // ← NUEVO NOMBRE SIN GUIONES
+        imagen: "promocombos.png", // ← NOMBRE CORRECTO
         tipo: "combo",
         destacado: true,
         combos: [
@@ -93,6 +104,7 @@ function renderPromociones() {
     grid.innerHTML = promocionesActivas.map(promo => {
         let contenidoExtra = '';
         
+        // === PROMOCIÓN 1: 15% OFF ===
         if (promo.tipo === 'descuento') {
             contenidoExtra = `
                 <div class="promo-beneficios">
@@ -107,6 +119,7 @@ function renderPromociones() {
             `;
         }
         
+        // === PROMOCIÓN 2: HBO MAX GRATIS ===
         if (promo.tipo === 'bonificacion') {
             contenidoExtra = `
                 <div class="promo-beneficios">
@@ -115,6 +128,7 @@ function renderPromociones() {
             `;
         }
         
+        // === PROMOCIÓN 3: COMBOS ===
         if (promo.tipo === 'combo') {
             contenidoExtra = `
                 <div class="promo-combos">
@@ -154,4 +168,5 @@ function renderPromociones() {
     }).join('');
 }
 
+// Ejecutar al cargar la página
 document.addEventListener('DOMContentLoaded', renderPromociones);
