@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
     renderApps('all');
     renderGames();
     renderInstalacion();
-    renderPromociones();
+    renderPromociones(); // ← Esta llama a la función de promociones.js
     renderFAQ();
     renderReferencias(1);
     setupFilters();
@@ -289,39 +289,6 @@ function renderInstalacion() {
     }).join('');
 }
 
-// ===== RENDER PROMOCIONES =====
-function renderPromociones() {
-    const grid = document.getElementById('promocionesGrid');
-    if (!grid) return;
-    
-    const promocionesActivas = typeof PROMOCIONES !== 'undefined' ? PROMOCIONES.filter(p => p.activa === true) : [];
-    
-    if (promocionesActivas.length === 0) {
-        grid.innerHTML = `
-            <div class="promociones-mensaje">
-                <i class="fas fa-gift"></i>
-                <h3>¡Próximamente!</h3>
-                <p>Estamos preparando promociones especiales para ti. <br>¡No te las pierdas!</p>
-            </div>
-        `;
-        return;
-    }
-    
-    grid.innerHTML = promocionesActivas.map(promo => `
-        <div class="promocion-card">
-            <div class="promo-icon"><i class="${promo.icono || 'fa-solid fa-tag'}"></i></div>
-            <h4>${promo.titulo}</h4>
-            <p>${promo.descripcion}</p>
-            <div class="promo-fecha">📅 ${promo.fecha || ''}</div>
-            <span class="promo-badge activa">🔥 Activa</span>
-            <a href="https://wa.me/593967869653?text=Hola,%20quiero%20aprovechar%20la%20promoción:%20${encodeURIComponent(promo.titulo)}" 
-               target="_blank" class="promo-btn">
-                <i class="fab fa-whatsapp"></i> Aprovechar
-            </a>
-        </div>
-    `).join('');
-}
-
 // ===== RENDER FAQ =====
 function renderFAQ() {
     const container = document.getElementById('faqContainer');
@@ -427,9 +394,6 @@ function openModal(appKey) {
         <h4 style="color:var(--gold);font-size:16px;margin:15px 0 10px;">📋 Planes disponibles:</h4>
     `;
     
-    // Variable para almacenar todos los planes
-    let planesHTML = '';
-    
     const tipos = Object.keys(precios);
     tipos.forEach(tipo => {
         if (tipo === 'nota') {
@@ -496,7 +460,6 @@ function openModal(appKey) {
         }
     });
     
-    // Botón WhatsApp
     const mensaje = encodeURIComponent(`Hola, quiero información sobre ${app.nombre}`);
     html += `
         <div style="display:flex;flex-direction:column;gap:10px;margin-top:20px;">
@@ -572,7 +535,6 @@ function addToCart(platform, plan, price) {
     carrito.push(item);
     updateCartUI();
     
-    // Feedback visual
     const btn = event.target;
     const originalText = btn.innerHTML;
     btn.innerHTML = '<i class="fas fa-check"></i> Agregado';
@@ -590,13 +552,11 @@ function updateCartUI() {
     const total = document.getElementById('cartTotal');
     const checkoutBtn = document.getElementById('checkoutBtn');
     
-    // Actualizar badge
     if (badge) {
         badge.textContent = carrito.length;
         badge.style.display = carrito.length > 0 ? 'flex' : 'none';
     }
     
-    // Actualizar contenido del modal
     if (body) {
         if (carrito.length === 0) {
             body.innerHTML = `
@@ -621,13 +581,11 @@ function updateCartUI() {
         }
     }
     
-    // Actualizar total
     if (total) {
         const totalPrice = carrito.reduce((sum, item) => sum + item.price, 0);
         total.textContent = `$${totalPrice.toFixed(2)}`;
     }
     
-    // Habilitar/deshabilitar botón
     if (checkoutBtn) {
         checkoutBtn.disabled = carrito.length === 0;
     }
